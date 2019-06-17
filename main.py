@@ -68,6 +68,7 @@ class MainWindow(QMainWindow, Ui_Dialog):
             ("Enfermedad grave","Fiebre Amarilla"),
             ("Enfermedad leve","No posee enfermedad tropical!"))
 
+        #Motor de inferencias
         for sintoma in Sintomas:
             if "No posee enfermedad tropical!" != run(0,X,Sintoma(Y,sintoma),Enfermedad(Y,X))[0]:
                 respuesta1 = run(0,X,Sintoma(Z,sintoma),Enfermedad(Z,Y),Lugar(Y,X))
@@ -94,13 +95,14 @@ class MainWindow(QMainWindow, Ui_Dialog):
             else:
                 continue
                 
-        
+        #Mide el numero de respuestas por enfermedad
         for respuesta in respuestas:
             if respuesta == "Zika":
                 zikaCont+=1
             if respuesta == "Fiebre Amarilla":
                 fiebreAmarillaCont += 1
         
+        #Compara los resultados y decide
         if zikaCont > fiebreAmarillaCont:
             self.RespuestaLBL.setText("El usuario probablemente tenga Zika")
         elif fiebreAmarillaCont > zikaCont:
